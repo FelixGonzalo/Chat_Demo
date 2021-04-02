@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./components/Navbar";
+import {ChatContext} from './context/ChatProvider'
+import Chat from "./components/Chat";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+  const {usuario} = React.useContext(ChatContext)
+
+  return usuario !== null ? (
+    <div>
+    <Navbar/>
+     {
+       usuario.estado ? (
+         <Chat/>
+       ) : (
+         <div className="display-5 text-center mt-5">
+            Debes iniciar Sesión
+         </div>
+       )
+     }
     </div>
-  );
+  ) : (
+    <div>Cargando...</div>
+  )
 }
 
 export default App;
