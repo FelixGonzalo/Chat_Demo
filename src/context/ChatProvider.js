@@ -5,7 +5,7 @@ export const ChatContext = React.createContext()
 
 const ChatProvider = (props) => {
 
-  const dataUsuario = {uid: null, emai:null, estado: null}
+  const dataUsuario = {uid: null, email:null,displayName: null,photoURL: null, estado: null}
   const [usuario, setUsuario] = React.useState(dataUsuario)
   const [mensajes, setMensajes] = React.useState([])
   
@@ -17,10 +17,22 @@ const ChatProvider = (props) => {
   const detectarUsuario = () => {
     auth.onAuthStateChanged(user => {
       if(user){
-        setUsuario({uid: user.uid, emai: user.email, estado: true})
+        setUsuario({
+          uid: user.uid, 
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          estado: true
+        })
         cargarMensajes()
       } else {
-        setUsuario({uid: null, email:null, estado: false})
+        setUsuario({
+          uid: null, 
+          email:null,
+          displayName: null,
+          photoURL: null,
+          estado: false
+        })
       }
     })
   }

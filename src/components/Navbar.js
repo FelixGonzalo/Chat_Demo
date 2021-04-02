@@ -5,7 +5,7 @@ import {ChatContext} from '../context/ChatProvider'
 const Navbar = () => {
 
   const {usuario, ingresoUsuario, cerrarSesion} = React.useContext(ChatContext)
-  const {theme, cambiarColor} = React.useContext(ThemeContext)
+  const {theme} = React.useContext(ThemeContext)
 
   return (
     <nav 
@@ -13,18 +13,11 @@ const Navbar = () => {
         background: theme.background,
         color: theme.color
       }}
-      className="navbar navbar-dark bg-dark px-3"
+      className="navbar px-3"
     >
-      <span className="navbar-brand">Chat</span>
-      <div>
-        <input
-          type="color"
-          onChange={e => cambiarColor({...theme, color: e.target.value})}
-        />
-        <input
-          type="color"
-          onChange={e => cambiarColor({...theme, background: e.target.value})}
-        />
+      <div className="">
+        <img src={usuario.photoURL} alt="" className="mx-1 rounded-circle" width="40px"/>
+        {usuario.displayName}
       </div>
       <div>
         {

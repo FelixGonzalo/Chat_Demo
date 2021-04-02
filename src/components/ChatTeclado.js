@@ -1,10 +1,12 @@
 import React from 'react'
 import {ChatContext} from '../context/ChatProvider'
+import {ThemeContext} from '../context/ThemeProvider'
 
 const ChatTeclado = () => {
 
   const {usuario, agregarMensajes} = React.useContext(ChatContext)
   const [mensaje, setMensaje] = React.useState('')
+  const {theme, cambiarColor} = React.useContext(ThemeContext)
 
   const agregar = (e) => {
     e.preventDefault()
@@ -18,9 +20,22 @@ const ChatTeclado = () => {
 
   return (
     <form 
-      className="fixed-bottom input-group p-3 bg-dark"
+      style={{
+        background: theme.background,
+      }}
+      className="fixed-bottom input-group p-3"
       onSubmit={agregar}
     >
+      <div className="d-flex flex-column">
+        <input
+          type="color"
+          onChange={e => cambiarColor({...theme, color: e.target.value})}
+        />
+        <input
+          type="color"
+          onChange={e => cambiarColor({...theme, background: e.target.value})}
+        />
+      </div>
       <input
         type="text"
         className="form-control"

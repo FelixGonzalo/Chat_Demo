@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 const firebaseConfig = {
-  /*tu firebaseConfig here*/
+ /*firebasConfig here */
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
